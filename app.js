@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const dotEnv = require("dotenv");
 
-dotEnv.config();
+const booksRouter = require("./routes/books");
+
 const app = express();
 
 // Config JSON response
@@ -15,10 +15,6 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static("public"));
 
 // Routes
-const books = require("./routes/books");
+app.use(booksRouter);
 
-app.use("/", books);
-
-app.listen(5000, () => {
-  console.log("----- The server is running! -----");
-});
+module.exports = app;
