@@ -1,15 +1,10 @@
-const conn = require("./conn");
+const connection = require("./connection");
 
-const selectAll = (res) => {
-  const query = "SELECT * FROM books;";
+const selectAll = async () => {
+  const query = "SELECT * FROM books";
+  const [books] = await connection.execute(query);
 
-  conn.query(query, (error, results) => {
-    if (error) {
-      console.error(error);
-    }
-
-    res.json(results);
-  });
+  return books;
 };
 
 module.exports = { selectAll };
