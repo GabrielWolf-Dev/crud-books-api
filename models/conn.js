@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-const ConnectionDb = mysql.createPool({
+const conn = mysql.createPool({
   connectionLimit: 10,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -8,4 +8,4 @@ const ConnectionDb = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
-module.exports = ConnectionDb;
+module.exports = conn;

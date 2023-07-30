@@ -1,17 +1,15 @@
-const conn = require("./ConnectionDb");
+const conn = require("./conn");
 
-class Books {
-  selectAll(res) {
-    const query = "SELECT * FROM books";
+const selectAll = (res) => {
+  const query = "SELECT * FROM books;";
 
-    conn.query(query, (error, results) => {
-      if (error) {
-        console.error(error);
-      }
+  conn.query(query, (error, results) => {
+    if (error) {
+      console.error(error);
+    }
 
-      res.json(results);
-    });
-  }
-}
+    res.json(results);
+  });
+};
 
-module.exports = Books;
+module.exports = { selectAll };

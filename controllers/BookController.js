@@ -1,11 +1,7 @@
-const Books = require("../models/Books");
+const books = require("../models/books");
 
-class BookController {
-  static async showAllBooks(req, res) {
-    const books = new Books();
+const showAllBooks = (req, res) => {
+  books.selectAll(res);
+};
 
-    books.selectAll(res);
-  }
-}
-
-module.exports = BookController;
+module.exports = { showAllBooks };

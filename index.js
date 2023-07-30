@@ -15,9 +15,9 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static("public"));
 
 // Routes
-const BookRoutes = require("./routes/BookRoutes");
+const books = require("./routes/books");
 
-app.use("/", BookRoutes);
+app.use("/", books);
 
 app.listen(5000, () => {
   console.log("----- The server is running! -----");
