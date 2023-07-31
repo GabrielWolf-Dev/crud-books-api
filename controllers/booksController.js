@@ -28,15 +28,16 @@ const createBook = async (req, res) => {
 
   try {
     if (book.title !== searchBook.title) {
-      const bookResult = await booksModel.insertBook(book);
+      const bookObj = {
+        ...book,
+        image: book.image === "" && defaultImg,
+      };
+      const bookResult = await booksModel.insertBook(bookObj);
 
       res.status(201).json({
         message: `Book: ${bookResult.title} inserted successfully!`,
         status: 201,
-        results: {
-          ...bookResult,
-          image: bookResult.image === "" && defaultImg,
-        },
+        results: bookObj,
       });
     } else {
       res.status(400).json({
