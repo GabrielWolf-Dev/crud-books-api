@@ -1,6 +1,6 @@
 const booksModel = require("../models/books");
 
-const showAllBooks = async (req, res) => {
+const showBooks = async (req, res) => {
   try {
     const books = await booksModel.selectAll();
 
@@ -57,4 +57,21 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { showAllBooks, createBook };
+const removeBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await booksModel.deleteBook(id);
+    res.status(204).json();
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "An error occurred on the server",
+      status: 500,
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { showBooks, createBook, removeBook };

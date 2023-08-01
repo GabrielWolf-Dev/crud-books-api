@@ -36,4 +36,12 @@ const insertBook = async (book) => {
   };
 };
 
-module.exports = { selectAll, selectSpecificBook, insertBook };
+const deleteBook = async (id) => {
+  const query =
+    "DELETE books FROM books JOIN reviews ON books.id = reviews.book_id WHERE books.id = ?";
+  const removedBook = await connection.execute(query, [id]);
+
+  return removedBook;
+};
+
+module.exports = { selectAll, selectSpecificBook, insertBook, deleteBook };

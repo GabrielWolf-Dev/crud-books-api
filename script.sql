@@ -32,8 +32,7 @@ ALTER TABLE `crudbooks`.`reviews`
 ADD CONSTRAINT `fk_reviews_books`
   FOREIGN KEY (`book_id`)
   REFERENCES `crudbooks`.`books` (`id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
+  ON DELETE CASCADE ON UPDATE CASCADE;
 
 /* ----------------------------------------------------------- */
 
