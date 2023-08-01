@@ -36,9 +36,9 @@ const showSpecificBook = async (req, res) => {
         results: book,
       });
     } else {
-      res.status(400).json({
+      res.status(404).json({
         message: `The book you are looking for does not exist.`,
-        status: 400,
+        status: 404,
       });
     }
   } catch (error) {
@@ -111,8 +111,8 @@ const updateBook = async (req, res) => {
   const searchBook = await booksModel.selectSpecificBook(book.title);
 
   if (isBookExists === null) {
-    res.status(400).json({
-      status: 400,
+    res.status(404).json({
+      status: 404,
       message: "The book you are looking for does not exist.",
     });
 
