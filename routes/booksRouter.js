@@ -3,6 +3,7 @@ const booksController = require("../controllers/booksController");
 const booksMiddleware = require("../middlewares/booksMiddleware");
 
 router.get("/books", booksController.showBooks);
+router.get("/books/:title", booksController.showSpecificBook);
 router.post(
   "/books",
   booksMiddleware.validateBodyReq,

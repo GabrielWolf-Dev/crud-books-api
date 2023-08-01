@@ -8,11 +8,19 @@ const selectAll = async () => {
 };
 
 const selectSpecificBook = async (titleBook) => {
-  const query = "SELECT id, title FROM books WHERE books.title = ?";
+  const query = "SELECT * FROM books WHERE books.title = ?";
   const [book] = await connection.execute(query, [titleBook]);
   const bookNull = {
     title: null,
   };
+
+  return book.length === 0 ? bookNull : book[0];
+};
+
+const selectBookId = async (id) => {
+  const query = "SELECT * FROM books WHERE books.id = ?";
+  const [book] = await connection.execute(query, [id]);
+  const bookNull = null;
 
   return book.length === 0 ? bookNull : book[0];
 };
@@ -66,6 +74,7 @@ const updateBook = async (id, book) => {
 module.exports = {
   selectAll,
   selectSpecificBook,
+  selectBookId,
   insertBook,
   deleteBook,
   updateBook,
