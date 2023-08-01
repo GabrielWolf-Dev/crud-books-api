@@ -9,5 +9,10 @@ router.post(
   booksController.createBook
 );
 router.delete("/books/:id", booksController.removeBook);
+router.put(
+  "/books/:id",
+  booksMiddleware.validateBodyReq,
+  booksController.updateBook
+);
 
 module.exports = router;

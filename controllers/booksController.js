@@ -1,5 +1,8 @@
 const booksModel = require("../models/books");
 
+const defaultImg =
+  "https://raw.githubusercontent.com/GabrielWolf-Dev/crud-books-api/main/public/svg/default_img_book.svg";
+
 const showBooks = async (req, res) => {
   try {
     const books = await booksModel.selectAll();
@@ -22,9 +25,6 @@ const showBooks = async (req, res) => {
 
 const createBook = async (req, res) => {
   const book = req.body;
-  const defaultImg =
-    "https://raw.githubusercontent.com/GabrielWolf-Dev/crud-books-api/main/public/svg/default_img_book.svg";
-  const searchBook = await booksModel.selectSpecificBook(book.title);
 
   try {
     if (book.title !== searchBook.title) {
@@ -74,4 +74,36 @@ const removeBook = async (req, res) => {
   }
 };
 
-module.exports = { showBooks, createBook, removeBook };
+const updateBook = async (req, res) => {
+  const book = req.body;
+  const searchBook = await booksModel.selectSpecificBook(book.title);
+
+  try {
+    if (book.title !== searchBook.title) {
+      const bookObj = {
+        ...book,
+        image: book.image === "" && defaultImg,
+      };
+      const { id } = req.params;
+
+      await booksModel.updateBook(id, bookObj);
+      res.status(204).json();
+    } else {
+      res.status(400).json({
+        status: 400,
+        message:
+          "This book is already in the database, please insert a different one.",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "An error occurred on the server",
+      status: 500,
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { showBooks, createBook, removeBook, updateBook };

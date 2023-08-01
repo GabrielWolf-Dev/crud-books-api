@@ -44,4 +44,29 @@ const deleteBook = async (id) => {
   return removedBook;
 };
 
-module.exports = { selectAll, selectSpecificBook, insertBook, deleteBook };
+const updateBook = async (id, book) => {
+  const { title, image, pages, author, publisher, rating } = book;
+
+  const query =
+    "UPDATE books SET title = ?, image = ?, pages = ?, author = ?, publisher = ?, rating = ? WHERE id = ?";
+
+  const updatedBook = await connection.execute(query, [
+    title,
+    image,
+    pages,
+    author,
+    publisher,
+    rating,
+    id,
+  ]);
+
+  return updatedBook;
+};
+
+module.exports = {
+  selectAll,
+  selectSpecificBook,
+  insertBook,
+  deleteBook,
+  updateBook,
+};
