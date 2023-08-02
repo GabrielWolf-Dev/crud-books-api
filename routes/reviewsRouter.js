@@ -8,5 +8,10 @@ router.post(
   reviewsMiddleware.validateBodyReq,
   reviewsController.createReview
 );
+router.put(
+  "/reviews/:id",
+  reviewsMiddleware.validateBodyReq,
+  reviewsController.updateReview
+);
 
 module.exports = router;

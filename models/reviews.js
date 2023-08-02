@@ -17,6 +17,14 @@ const selectSpecificReview = async (review) => {
   return reviewResult.length !== 0 ? reviewNull : reviewResult[0];
 };
 
+const selectReviewId = async (id) => {
+  const query = "SELECT * FROM reviews WHERE reviews.id = ?";
+  const [review] = await connection.execute(query, [id]);
+  const reviewNull = null;
+
+  return review.length === 0 ? reviewNull : review[0];
+};
+
 const insertReview = async (review) => {
   const { name, text, book_id } = review;
   const query = "INSERT INTO reviews (name, text, book_id) VALUES(?, ?, ?)";
@@ -28,8 +36,24 @@ const insertReview = async (review) => {
   };
 };
 
+const updateReview = async (id, review) => {
+  const { name, text, book_id } = review;
+  const query =
+    "UPDATE reviews SET name = ?, text = ?, book_id = ? WHERE id = ?";
+  const updatedReview = await connection.execute(query, [
+    name,
+    text,
+    book_id,
+    id,
+  ]);
+
+  return updatedReview;
+};
+
 module.exports = {
   selectReviews,
   selectSpecificReview,
+  selectReviewId,
   insertReview,
+  updateReview,
 };

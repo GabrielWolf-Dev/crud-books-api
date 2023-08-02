@@ -72,4 +72,42 @@ const createReview = async (req, res) => {
   }
 };
 
-module.exports = { showReviews, createReview };
+const updateReview = async (req, res) => {
+  const { id } = req.params;
+  const review = req.body;
+  const reviewIdSearch = await reviewsModel.selectReviewId(id);
+  const searchReview = await reviewsModel.selectSpecificReview(review);
+
+  if (reviewIdSearch === null) {
+    res.status(400).json({
+      status: 400,
+      message:
+        "This review does not exist, please enter an id of an existing review in the bank.",
+    });
+
+    return;
+  }
+
+  try {
+    if (searchReview !== null) {
+      await reviewsModel.updateReview(id, review);
+      res.status(204).json();
+    } else {
+      res.status(400).json({
+        status: 400,
+        message:
+          "This review is already in the database, please insert a different one.",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "An error occurred on the server",
+      status: 500,
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { showReviews, createReview, updateReview };
