@@ -35,12 +35,7 @@ const insertBook = async (book) => {
 
   return {
     id: bookResult.insertId,
-    title,
-    image,
-    pages,
-    author,
-    publisher,
-    rating,
+    ...book,
   };
 };
 

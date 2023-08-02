@@ -67,7 +67,7 @@ const createBook = async (req, res) => {
       res.status(201).json({
         message: `Book: '${bookResult.title}' inserted successfully!`,
         status: 201,
-        results: bookObj,
+        results: bookResult,
       });
     } else {
       res.status(400).json({
