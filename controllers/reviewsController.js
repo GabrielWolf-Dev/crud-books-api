@@ -110,4 +110,21 @@ const updateReview = async (req, res) => {
   }
 };
 
-module.exports = { showReviews, createReview, updateReview };
+const removeReview = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await reviewsModel.deleteReview(id);
+    res.status(204).json();
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "An error occurred on the server",
+      status: 500,
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { showReviews, createReview, updateReview, removeReview };

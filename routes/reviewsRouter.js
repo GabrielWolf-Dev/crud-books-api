@@ -13,5 +13,6 @@ router.put(
   reviewsMiddleware.validateBodyReq,
   reviewsController.updateReview
 );
+router.delete("/reviews/:id", reviewsController.removeReview);
 
 module.exports = router;

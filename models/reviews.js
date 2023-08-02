@@ -50,10 +50,18 @@ const updateReview = async (id, review) => {
   return updatedReview;
 };
 
+const deleteReview = async (id) => {
+  const query = "DELETE FROM reviews WHERE id = ?";
+  const removedReviews = await connection.execute(query, [id]);
+
+  return removedReviews;
+};
+
 module.exports = {
   selectReviews,
   selectSpecificReview,
   selectReviewId,
   insertReview,
   updateReview,
+  deleteReview,
 };
