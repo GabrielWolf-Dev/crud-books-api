@@ -45,7 +45,7 @@ Em ambas as rotas tem validações a partir de um middleware, validando os valor
 
 <h1 id="como-usar">Como usar:</h1>
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+Para clonar e executar este projeto, você precisará de [Git](https://git-scm.com) e [Node.js](https://nodejs.org/en/download/) (que vem com [ npm](http://npmjs.com)) instalado em seu computador. Na sua linha de comando:
 
 ```bash
 # Clone este repositório:
