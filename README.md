@@ -4,8 +4,8 @@
    Um simples cadastro de livros com Node.js e MySQL.
 </div>
 
-<div align="center">
-![book illustration](https://raw.githubusercontent.com/GabrielWolf-Dev/crud-books-api/main/public/svg/book_readme.svg)
+<div align="center" style="margin: 20px 0;">
+   <img src="https://raw.githubusercontent.com/GabrielWolf-Dev/crud-books-api/1957fb480bdf7dd8c677d3341eab4ccd018fd4dc/public/svg/book_readme.svg" alt="Ilustração de uma livraria" />
 </div>
 
 ## Índice
