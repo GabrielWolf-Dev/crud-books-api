@@ -28,7 +28,7 @@ Me preocupei em aplicar as boas práticas que aprendi até este momento e desenv
 <br>
 A API tem duas rotas "/books" e "/reviews", a "/reviews" tem avaliações e resenhas dos usuários que leram algum livro cadastrado na aplicação, foi uma ótima forma de trabalhar com o relacionamento básico entre tabelas neste projeto.
 <br>
-Depois desse projeto, vou finalizar no outro repositório a parte do front-end com Vue.js, mas aplicando TypeScript que é a tecnologia atual que estou estudando. E muito provavelmente vou fazer uma versão de TypeScript desse projeto futuramente para treinar também.
+Depois desse projeto, vou finalizar no outro repositório a parte do front-end com algum framework React.js ou Vue.
 
 <h1 id="tecnologias">Tecnologias:</h1>
 
