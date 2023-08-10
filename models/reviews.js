@@ -1,4 +1,4 @@
-const connection = require("./connection");
+const connection = require("../db/connection");
 
 const selectReviews = async (id) => {
   const query = "SELECT * FROM reviews WHERE reviews.book_id = ?";
