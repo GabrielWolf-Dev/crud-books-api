@@ -1,46 +1,24 @@
 const validateBodyReq = (req, res, next) => {
   const { title, image, pages, author, publisher, rating } = req.body;
+  const isFieldsUndefined =
+    title === undefined ||
+    image === undefined ||
+    pages === undefined ||
+    author === undefined ||
+    publisher === undefined ||
+    rating === undefined;
+  const isFieldsEmpty = title === "" || author === "" || publisher === "";
 
-  if (title === undefined) {
+  if (isFieldsUndefined) {
     return res
       .status(400)
-      .json({ status: 400, message: "The field title is required" });
+      .json({ status: 400, message: "Fields are required" });
   }
 
-  if (image === undefined) {
+  if (isFieldsEmpty) {
     return res
       .status(400)
-      .json({ status: 400, message: "The field image is required" });
-  }
-
-  if (pages === undefined) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "The field pages is required" });
-  }
-
-  if (author === undefined) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "The field author is required" });
-  }
-
-  if (publisher === undefined) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "The field publisher is required" });
-  }
-
-  if (rating === undefined) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "The field rating is required" });
-  }
-
-  if (title === "") {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Title cannot be empty" });
+      .json({ status: 400, message: "Fields cannot have empty strings" });
   }
 
   if (pages <= 5) {
@@ -49,18 +27,6 @@ const validateBodyReq = (req, res, next) => {
       message:
         "Enter the correct number of pages. It must be longer than 5 pages.",
     });
-  }
-
-  if (author === "") {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Author cannot be empty" });
-  }
-
-  if (publisher === "") {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Publisher cannot be empty" });
   }
 
   if (rating === 0) {

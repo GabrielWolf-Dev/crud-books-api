@@ -1,35 +1,20 @@
 const validateBodyReq = (req, res, next) => {
   const { name, text, book_id } = req.body;
+  const isFieldsUndefined =
+    name === undefined || text === undefined || book_id === undefined;
+  const isFieldsEmpty = name === "" || text === "";
 
-  if (name === undefined) {
+  if (isFieldsUndefined) {
     return res.status(400).json({
       status: 400,
-      message: "The field name is required",
+      message: "Fields are required",
     });
   }
 
-  if (text === undefined) {
+  if (isFieldsEmpty) {
     return res
       .status(400)
-      .json({ status: 400, message: "The field text is required" });
-  }
-
-  if (book_id === undefined) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "The field book_id is required" });
-  }
-
-  if (name === "") {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Name cannot be empty" });
-  }
-
-  if (text === "") {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Text review cannot be empty" });
+      .json({ status: 400, message: "Fields cannot have empty strings" });
   }
 
   if (book_id === 0) {
